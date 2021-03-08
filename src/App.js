@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 
 
@@ -36,18 +36,22 @@ const foodILike = [
   }
 ];
 
-// function renderFood(dish) {
-//   console.log(dish);
-//   return <Food name={dish.name} picture={dish.image} />
-// }
 
-function Food({name, picture}) {
+function Food({name, picture, rating}) {
   return(
     <div>
       <h2>I LOVE {name}.</h2>
+      <h5>{rating}/5.0</h5>
       <img src={picture} alt={name} />
     </div>
   );
+}
+
+Food.propTypes = {
+  id: PropTypes.number,
+  name: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired
 }
 
 function App() {
@@ -55,7 +59,7 @@ function App() {
     <div className="App">
       <p>hello</p>
       {foodILike.map(dish => (
-        <Food key={dish.id} name={dish.name} picture={dish.image} />
+        <Food key={dish.id} name={dish.name} picture={dish.image} rating={dish.rating} />
       ))}
     </div>
   );
